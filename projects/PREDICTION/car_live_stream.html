@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Range Live Stream</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 50px;
+        }
+        #live-stream {
+            font-size: 1.5em;
+            margin: 20px auto;
+        }
+        .range {
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        let rangeA = 300; // Starting range for Car A
+        let rangeB = 250; // Starting range for Car B
+
+        function updateRanges() {
+            rangeA = Math.max(rangeA - Math.random() * 5, 0).toFixed(2);
+            rangeB = Math.max(rangeB - Math.random() * 5, 0).toFixed(2);
+
+            document.getElementById("carA").innerText = `Car A: ${rangeA} km`;
+            document.getElementById("carB").innerText = `Car B: ${rangeB} km`;
+
+            if (rangeA > 0 || rangeB > 0) {
+                setTimeout(updateRanges, 1000);
+            }
+        }
+
+        window.onload = updateRanges;
+    </script>
+</head>
+<body>
+    <h1>Live Stream: Predicted Car Ranges</h1>
+    <div id="live-stream">
+        <p id="carA" class="range">Car A: 300 km</p>
+        <p id="carB" class="range">Car B: 250 km</p>
+    </div>
+</body>
+</html>

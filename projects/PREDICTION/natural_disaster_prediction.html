@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Disaster Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+        }
+        #uploadedImage {
+            width: 300px;
+            height: auto;
+            display: none;
+        }
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Natural Disaster Prediction from Image</h1>
+    <input type="file" id="imageUpload" accept="image/*" onchange="predictDisaster()">
+    <br><br>
+    <img id="uploadedImage" src="" alt="Uploaded Image">
+    <p id="result"></p>
+
+    <script>
+        // Function to simulate the prediction of the natural disaster type
+        function predictDisaster() {
+            // Get the uploaded image
+            const file = document.getElementById('imageUpload').files[0];
+            const img = document.getElementById('uploadedImage');
+            img.src = URL.createObjectURL(file);
+            img.style.display = 'block';
+
+            // Simulate a prediction
+            const prediction = simulatePrediction();
+            
+            // Display the result
+            document.getElementById('result').innerText = `Predicted Disaster: ${prediction}`;
+        }
+
+        // Simulate the disaster prediction with 80% chance of "Nothing"
+        function simulatePrediction() {
+            const randomNum = Math.random();  // Get a random number between 0 and 1
+
+            // 80% chance for "Nothing", 20% split between other disasters
+            if (randomNum < 0.8) {
+                return 'Nothing';
+            } else {
+                // 20% chance for other disasters
+                const disasters = ['Earthquake', 'Hurricane', 'Flood', 'Landslide'];
+                const disasterIndex = Math.floor(Math.random() * disasters.length);
+                return disasters[disasterIndex];
+            }
+        }
+    </script>
+</body>
+</html>
